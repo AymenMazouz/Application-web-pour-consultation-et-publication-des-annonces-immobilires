@@ -11,6 +11,7 @@ import Page from './Pages/Rechercheetfiltre/Lyes';
 import AnnoncePage from './Pages/MyAI/annonce';
 import DetailAI from './Pages/DetailAI/detailAI';
 import Deposerai from './Pages/DeposerAI/deposerAI';
+import Admin from './Pages/Admin/admin';
 
 
 
@@ -30,10 +31,7 @@ import Deposerai from './Pages/DeposerAI/deposerAI';
       <Route path="/Signin/SigninUser/Main/annonce" element={<AnnoncePage />} /> 
       <Route path="/Signin/SigninUser/Main/lyes/detaiAI/:id" element={<DetailAI />} />
       <Route path="/Signin/SigninUser/Main/deposerai" element={<Deposerai />} />
-
-      
-
-
+      <Route path="/Signin/SigninUser/Admin" element={<Admin />} />
 
     </Routes>
   );

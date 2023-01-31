@@ -1,0 +1,136 @@
+/* lyes */
+*{
+    margin: 0;
+    padding: 0;
+}
+
+/* le conteneur qui contient la bar de recherche et filter */
+.Containersearch_filter{
+    padding: 20px;
+    display:  flex;
+    flex-wrap: wrap;
+    
+}
+
+/* le conteneur qui contient la bar de recherche */
+.ContainerSearch{
+    flex-grow: 1; 
+    margin-right: 5%; 
+    margin-bottom:20px ;
+}
+
+/* le conteneur qui contient la bar de filter */
+.ContainerFilter{
+    flex-grow: 3;
+    display: flex;
+    justify-content: flex-start;
+}
+
+/* le input de la recherche */
+.seachinput {
+    background-color:#fff;
+    border: 1px solid #0a58bf;
+    border-radius:15px;
+    box-sizing: border-box;
+    color: #112a41;
+    font-size: 16px;
+    font-weight: 600;
+    height: 40px;
+    line-height: 1.5;
+    padding: 0 16px;
+    width: 100%;
+}
+
+/* les selectes des type wilaya et commune */
+
+.selectcase{
+    margin: 0 5px;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 1.91;
+    padding-right: 38px;
+    text-align: left;
+    white-space: nowrap;
+    background-color:#fff;
+    border: 1px solid #0a58bf;
+    border-radius:6px;
+    box-sizing: border-box;
+    color: #112a41;
+    font-weight: 600;
+    height: 40px; 
+    margin-bottom:8px ;
+}
+
+/* date input */
+
+.dateinput{
+    background-color:#fff;
+    border: 1px solid #0a58bf;
+    border-radius:6px;
+    box-sizing: border-box;
+    color: #112a41;
+    font-size: 14px;
+    font-weight: 600;
+    height: 40px;
+    /* line-height: 1.91; */
+    margin: 0 5px;
+    margin-bottom:8px ;
+}
+
+/* houton de la rechecher */
+
+.searchbutton{
+    background-color: #112a41;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 0 40px;
+    height: 40px;
+
+}
+/* pour le rendre responsive */
+@media (max-width: 1280px) {
+    .ContainerSearch{
+        margin-right: 0; 
+    }
+}
+
+@media (max-width: 1215px) {
+    .type{
+        margin-left: 0; 
+    }
+    .ContainerFilter{
+        
+        justify-content: space-between;
+        flex-wrap: wrap;
+        }
+}
+@media (max-width: 970px) {
+    .selectcase {
+        width: 40%;
+        margin-left: 0; 
+    }
+    .commune{
+        width: 81%;
+    }
+    .dateinput{
+        width: 40%;
+        margin-left: 0; 
+    } 
+    .searchbutton{
+        width: 81%;
+        margin-left: 0; 
+    }
+    .ContainerFilter{
+        justify-content: center;
+        }
+    .seachinput{
+        width: 81%;
+    }
+    .ContainerSearch{
+        display: flex;
+        justify-content: center;
+    }
+}
+
