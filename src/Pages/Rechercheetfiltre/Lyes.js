@@ -8,6 +8,7 @@ import DetailAI from "../DetailAI/detailAI";
 import { Router, Route } from "react-router-dom";
 import axios from "axios";
 
+
 const LyesPage = () => {
   const [announces, SetAnounces] = useState(null);
   const [announcesall, SetAnnouncesall] = useState(null);
