@@ -14,17 +14,42 @@ const LyesPage = () => {
   const [announcesall, SetAnnouncesall] = useState(null);
   const [aiispending, setAiispending] = useState(true);
   const [error, setError] = useState(null);
+  const[page,setPage]=useState(1)
+  // var page=1;
+  const[suivant,setSuivant]=useState(false)
+  const[precedent,setPrecedent]=useState(false)
+
+
+  async function fetchData(nbpage) {
+    // const res = await axios.get("http://127.0.0.1:5000/annonceget");
+    // console.log("pageeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",page);
+    const res = await axios.get("http://127.0.0.1:5000//annoncegetnew/"+nbpage);
+    console.log(res.data);
+    SetAnounces(res.data.announces);
+    SetAnnouncesall(res.data.announces);
+    setAiispending(false);
+    setError(null); // ...
+    setPrecedent(res.data.postspre)
+    setSuivant(res.data.postssuiv)
+    setPage(res.data.postspage)
+  }
 
   useEffect(() => {
     async function fetchData() {
-      const res = await axios.get("http://127.0.0.1:5000/annonceget");
-      console.log(res.data.announces);
+      // const res = await axios.get("http://127.0.0.1:5000/annonceget");
+      console.log("pageeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",page);
+      const res = await axios.get("http://127.0.0.1:5000//annoncegetnew/1");
+      console.log(res.data);
       SetAnounces(res.data.announces);
       SetAnnouncesall(res.data.announces);
       setAiispending(false);
       setError(null); // ...
+      setPrecedent(res.data.postspre)
+      setSuivant(res.data.postssuiv)
+      setPage(res.data.postspage)
     }
     fetchData();
+    
 
     //  fetch('http://localhost:8000/announces').then(res =>{
     //   if (!res.ok) {
@@ -156,6 +181,17 @@ const LyesPage = () => {
       {error && <div> {error}</div>}
       {aiispending && <div>Loading ...</div>}
       {announcesall && <Map_Annonce announces={announces} />}
+      {/* {announcesall && console.log(announces)} */}
+      {announcesall && precedent && <button onClick={async()=>{
+        // page=page-1;
+        fetchData(page-1);
+      }}>previos</button>}
+      {announcesall && suivant &&<button onClick={async()=>{
+        console.log("page f2irst",page);
+        // page = page+1;
+        console.log("page s2econd",page+1);
+        fetchData(page+1);
+      }}>next</button>} 
     </div>
   );
 };

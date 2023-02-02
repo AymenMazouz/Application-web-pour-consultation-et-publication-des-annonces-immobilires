@@ -1,0 +1,121 @@
+.sugg_adresse:hover{
+    background-color: #112a41;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+   
+}
+.sugg_adresse{
+    display: flex;
+    border: 0.1px solid #0a58bf24;
+}
+
+.postion_icon{
+    max-height: 20px;
+}
+
+
+.div_sugg_adresse{
+    position: absolute;
+    z-index: 99;
+    top: 39px;
+    background-color: aliceblue;
+    overflow-x: hidden;
+    border: 1px solid #0a58bf52;
+    /* border-radius:5px; */
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.div_address{
+    position: relative;
+    /* overflow-x: hidden; */
+    background-color:#fff;
+    /* border: 1px solid #0a58bf; */
+    /* border-radius:15px; */
+    /* box-sizing: border-box; */
+    color: #112a41;
+    font-size: 16px;
+    font-weight: 600;
+    /* height: 40px; */
+    line-height: 1.5;
+    /* padding: 0 16px; */
+    width: 100%;
+}
+
+.div-map{
+    display: flex;
+    justify-content: center;
+}
+
+.Container_input_deposer{
+    padding: 20px;
+    display:  flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    
+}
+.Container_input_info{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.seachinput_deposer {
+    background-color:#fff;
+    border: 1px solid #0a58bf;
+    border-radius:15px;
+    box-sizing: border-box;
+    color: #112a41;
+    font-size: 16px;
+    font-weight: 600;
+    height: 40px;
+    line-height: 1.5;
+    padding: 0 16px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+.description{
+    height: 140px;
+    resize: none;
+    padding-top: 5px;
+}
+.div-type-cat{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.selectcase_deposer{
+    margin: 0 5px;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 1.91;
+    padding-right: 38px;
+    text-align: left;
+    white-space: nowrap;
+    background-color:#fff;
+    border: 1px solid #0a58bf;
+    border-radius:6px;
+    box-sizing: border-box;
+    color: #112a41;
+    font-weight: 600;
+    height: 40px; 
+    margin-bottom:8px ;
+    width: 100%;
+}
+#erreur_message{
+    display: none;
+    color: rgba(251, 55, 55, 0.777);
+    font-size: 25px;
+
+}
+
+
+
+@media (max-width: 970px) {
+
+    .div_sugg_adresse{
+        width: 81%;
+    }
+}

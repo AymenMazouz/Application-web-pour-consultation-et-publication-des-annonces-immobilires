@@ -6,6 +6,7 @@ import Map,{NavigationControl,Marker} from 'react-map-gl'
 import maplibregl from 'maplibre-gl'
 import 'maplibre-gl/dist/maplibre-gl.css';
 import axios from 'axios';
+import { NavBtnLink, NavBtn } from '../../Pages/MainElements'
 const Detailai = () => {
 
     const {id} =useParams();
@@ -128,7 +129,7 @@ const Detailai = () => {
                         </div>
                         </div>
                         <div className='div-ligne'></div>
-                        <div style={{display:"flex",justifyContent:"center"}}><button className='chat-seller-bt' >Chat with seller</button></div>
+                        <div style={{display:"flex",justifyContent:"center"}}><NavBtnLink className='chat-seller-bt'to='/Signin/SigninUser/Main/chat' >Chat with seller</NavBtnLink></div>
                     </div>
                     <div className='div-info-2' >
                     <p className='div-info-title'>Seller Contact</p>

@@ -15,6 +15,7 @@ const Map_Annonce = (prop) => {
 //   const res = await axios.get("");
 //   console.log(res.data);
 
+
   return (
     <dir className="ContainerMap_Annonce">
       <div className="map">
@@ -66,6 +67,27 @@ const Map_Annonce = (prop) => {
         ))}
       </div>
       {/* {console.log(announce.photos[0])} */}
+      {/* {% for user in users.items %}
+    < h1> {{ user.name }} </h1>
+      {% endfor %}
+
+<nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    {% if users.has_prev %}
+                      <li class="page-item"> <a class="page-link" href="{{ url_for('index', page=users.prev_num) }}">Previous</a></li>
+                    {% else %}
+                      <li class="page-item"><a class="page-link btn disabled" href="#">Previous</a></li>
+                    {% endif %}
+
+
+                    {% if users.has_next %}
+                      <li class="page-item"> <a class="page-link" href="{{ url_for('index', page=users.next_num) }}">Next</a></li>
+                    {% else %}
+                      <li class="page-item"><a class="page-link btn disabled" href="#">Next</a></li>
+                    {% endif %}
+
+                </ul>
+              </nav> */}
     </dir>
   );
 };
