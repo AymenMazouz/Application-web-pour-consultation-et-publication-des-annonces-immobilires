@@ -7,6 +7,10 @@ import Button from "../../Components/Footer/Button";
 import DetailAI from "../DetailAI/detailAI";
 import { Router, Route } from "react-router-dom";
 import axios from "axios";
+import SideBar from '../../Components/SideBar2'
+import NavBar from '../../Components/NavBar2'
+import "./style.css";
+
 
 
 const LyesPage = () => {
@@ -18,6 +22,7 @@ const LyesPage = () => {
   // var page=1;
   const[suivant,setSuivant]=useState(false)
   const[precedent,setPrecedent]=useState(false)
+  const[search,setSearch]=useState(false)
 
 
   async function fetchData(nbpage) {
@@ -33,7 +38,7 @@ const LyesPage = () => {
     setSuivant(res.data.postssuiv)
     setPage(res.data.postspage)
   }
-
+  
   useEffect(() => {
     async function fetchData() {
       // const res = await axios.get("http://127.0.0.1:5000/annonceget");
@@ -48,6 +53,7 @@ const LyesPage = () => {
       setSuivant(res.data.postssuiv)
       setPage(res.data.postspage)
     }
+    
     fetchData();
     
 
@@ -154,7 +160,9 @@ const LyesPage = () => {
 
     await axios
       .post("http://127.0.0.1:5000/recherche", annonceSearch)
-      .then(() => alert("Envoyé avec success"))
+      .then(() => {alert("Envoyé avec success")
+    setSearch(true)
+    })
       .catch(() => alert("Il y a un problème"));
     const res = await axios.get("http://127.0.0.1:5000/rechercheget");
     console.log(res.data.announces);
@@ -166,32 +174,45 @@ const LyesPage = () => {
 
 
   };
+  const [isOpen, setIsOpen]=useState(false);
+    const toggle = () => {
+        setIsOpen(!isOpen);
+    };
   return (
     <div>
+      <SideBar isOpen={isOpen} toggle={toggle}/>
+      <NavBar toggle={toggle}/>
+      <div style={{height:"80px"}} ></div>
+      <div className="div__search_main" >
       {announcesall && <SearchBar handleFilter={handleFilter} />}
-      {announcesall != announces && (
-        <button
+      {search && (
+        <button  className="bt_annuler"
           onClick={() => {
-            SetAnounces(announcesall);
+            // SetAnounces(announcesall);
+            fetchData(1);
+            setSearch(false)
           }}
         >
           annuler search
         </button>
       )}
+      </div>
       {error && <div> {error}</div>}
       {aiispending && <div>Loading ...</div>}
       {announcesall && <Map_Annonce announces={announces} />}
       {/* {announcesall && console.log(announces)} */}
-      {announcesall && precedent && <button onClick={async()=>{
+      <div className="div-next-pre">
+      {announcesall && precedent && <button className="next_pre_bt"  onClick={async()=>{
         // page=page-1;
         fetchData(page-1);
       }}>previos</button>}
-      {announcesall && suivant &&<button onClick={async()=>{
+      {announcesall && suivant &&<button className="next_pre_bt" onClick={async()=>{
         console.log("page f2irst",page);
         // page = page+1;
         console.log("page s2econd",page+1);
         fetchData(page+1);
       }}>next</button>} 
+      </div>
     </div>
   );
 };

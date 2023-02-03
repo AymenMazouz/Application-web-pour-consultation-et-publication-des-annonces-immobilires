@@ -52,7 +52,7 @@ section{
     height: 42px;
     width: 42px;
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     justify-content: space-around;
     font-size:  42px;
     color: aliceblue;

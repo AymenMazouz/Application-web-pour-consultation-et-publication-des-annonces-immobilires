@@ -7,6 +7,8 @@ import maplibregl from 'maplibre-gl'
 import 'maplibre-gl/dist/maplibre-gl.css';
 import axios from 'axios';
 import { NavBtnLink, NavBtn } from '../../Pages/MainElements'
+import SideBar from '../../Components/SideBar2'
+import NavBar from '../../Components/NavBar2'
 const Detailai = () => {
 
     const {id} =useParams();
@@ -17,6 +19,7 @@ const Detailai = () => {
     const[error,setError]=useState(null);
     const[mapAffiche,setMapAffiche]=useState(false);
     const[cptimg,setCptimg]=useState(0)
+    const[infouser,setInfouser]=useState(null)
   useEffect(()=>{
     
   //  fetch('http://localhost:8000/announces/'+id).then(res =>{
@@ -43,15 +46,26 @@ const Detailai = () => {
     const res = await axios.get("http://127.0.0.1:5000/infoAI/"+id);
       console.log(res.data.announces[0]);
       SetAnouncesdetail(res.data.announces[0]);
+      let nom =res.data.nom
+      let prenom =res.data.prenom
+      let adresse =res.data.adresse
+      let info ={nom,prenom,adresse}
+      setInfouser(info)
       setAiispending(false);
       setError(null); // ...
   }
   fetchData()
   },[])
-  
+  const [isOpen, setIsOpen]=useState(false);
+  const toggle = () => {
+      setIsOpen(!isOpen);
+  };
   
     return (
         <div>
+            <SideBar isOpen={isOpen} toggle={toggle}/>
+            <NavBar toggle={toggle}/>
+            <div style={{height:"100px"}} ></div>
             { aiispending && <div>Loading ...</div>}
                 
             {announcedetail &&<section style={{display:"flex",flexDirection:"column",justifyContent:"center"}}>
@@ -66,7 +80,7 @@ const Detailai = () => {
                         initialViewState={{
                             longitude: announcedetail.longitude,
                             latitude: announcedetail.latitude,
-                            zoom: 11
+                            zoom: 7
                         }}
                         // style={{ height: "220px"}}
                         mapStyle="https://api.maptiler.com/maps/streets/style.json?key=ami5YZbLyI4lKlA0CpRx	"
@@ -95,7 +109,7 @@ const Detailai = () => {
                         initialViewState={{
                             longitude: announcedetail.longitude,
                             latitude: announcedetail.latitude,
-                            zoom: 8.5
+                            zoom: 3
                         }}
                         style={{ cursor: "pointer",height: "220px"}}
                         cursor={"pointer"}
@@ -129,17 +143,17 @@ const Detailai = () => {
                         </div>
                         </div>
                         <div className='div-ligne'></div>
-                        <div style={{display:"flex",justifyContent:"center"}}><NavBtnLink className='chat-seller-bt'to='/Signin/SigninUser/Main/chat' >Chat with seller</NavBtnLink></div>
+                        <div style={{display:"flex",justifyContent:"center"}}><NavBtnLink className='chat-seller-bt'to={`/Signin/SigninUser/Main/chat/${id}`} >Chat with seller</NavBtnLink></div>
                     </div>
                     <div className='div-info-2' >
                     <p className='div-info-title'>Seller Contact</p>
                     <div className='div-ligne'></div>
                         <div style={{display:"flex",alignItems:"center",margin:"5px 0"}}><img src={require("../../Images/contact.png")} alt=""  />
-                        <p>: unavailable</p>
+                        <p>:{infouser.nom} {infouser.prenom} </p>
                         </div>
                         
                         <div style={{display:"flex",alignItems:"center",margin:"5px 0"}}><img src={require("../../Images/email.png")} alt="" height="25px" width="25px" />
-                        <p>: unavailable</p>
+                        <p>: {announcedetail.email}</p>
                         </div>
                         
                         <div style={{display:"flex",alignItems:"center",margin:"5px 0"}}><img src={require("../../Images/facebook.png")} alt="" height="25px" width="25px" />
@@ -147,7 +161,7 @@ const Detailai = () => {
                         </div>
                         {/* <div className='div-ligne3'></div> */}
                         <div style={{display:"flex",alignItems:"center",margin:"5px 0"}}><img src={require("../../Images/position.png")} alt="" height="25px" width="25px" />
-                        <p>: {announcedetail.adresse}</p>
+                        <p>: {infouser.adresse}</p>
                         </div>
                        
                         
@@ -164,7 +178,7 @@ const Detailai = () => {
               <div className='div-description' >
                   <div >
                     
-                    <div className='div-ligne2'></div>
+                    {/* <div className='div-ligne2'></div> */}
                     <p> {announcedetail.description}</p>
                   </div>
               </div>

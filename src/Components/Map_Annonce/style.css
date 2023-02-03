@@ -61,6 +61,8 @@ background: #f3f2f2;
     line-height: 1.5;
     color: #95a0aa;
     padding-left: 15px;
+    max-height: 45px;
+    overflow-y: hidden;
 }
 
 .TypeSurface{

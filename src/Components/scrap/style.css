@@ -1,0 +1,40 @@
+
+
+
+.div_scrap_cp{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+}
+.nb_scrap{
+    background-color:#fff;
+    border: 1px solid #0a58bf;
+    border-radius:15px;
+    box-sizing: border-box;
+    color: #112a41;
+    font-size: 16px;
+    font-weight: 600;
+    height: 40px;
+    line-height: 1.5;
+    padding: 0 16px;
+    width: 70%;
+    margin:  10px 2%;
+}
+
+.bt_sb_scrap{
+    background-color: #112a41;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 0 40px;
+    height: 40px;}
+
+.messg_scrap{
+
+    text-align: center;
+    color: #112a41;
+    font-size: 20px;
+}    

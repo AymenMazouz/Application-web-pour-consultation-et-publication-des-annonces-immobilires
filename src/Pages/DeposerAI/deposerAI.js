@@ -5,6 +5,8 @@ import "./style.css";
 import Map, { NavigationControl, Marker } from "react-map-gl";
 import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
+import SideBar from '../../Components/SideBar2'
+import NavBar from '../../Components/NavBar2'
 
 const NOMINATIM_BASE_URL="https://nominatim.openstreetmap.org/search?"
 const params ={
@@ -16,6 +18,15 @@ const params ={
 
 
 const Deposerai = () => {
+  window.onkeydown = evt => {
+    console.log(evt.keyCode);
+    if(evt.keyCode==evt.keyCode){
+      document.getElementById("div_sugg_adresse").style.display="none"
+    }
+  }
+
+
+
   useEffect(() => {
     fetch("http://localhost:9000/commune/" )
       .then((res) => {
@@ -91,10 +102,11 @@ const Deposerai = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(images);
    
-    if(title==""||description==""||type==""||categorie==""||wilaya==""||commune==""||prix==""||surface==""||longitude==""||latitude==""||images==[]){
+    if(title==""||description==""||type==""||categorie==""||wilaya==""||commune==""||prix==""||surface==""||longitude==""||latitude==""||images.length==0){
       document.getElementById("erreur_message").style.display="block"
-      console.log("iffffffffffffffffffffffffffffffffffffffff");
+      
       // scrollTo(0,0)
       window.scrollTo({
         top: 0,
@@ -127,11 +139,17 @@ const Deposerai = () => {
   //    }
   //   )
   // }
-  
+  const [isOpen, setIsOpen]=useState(false);
+    const toggle = () => {
+        setIsOpen(!isOpen);
+    };
   return (
     <section>
+      <SideBar isOpen={isOpen} toggle={toggle}/>
+      <NavBar toggle={toggle}/>
+      <div style={{height:"80px"}} ></div>
       <div className="Container_input_deposer" >
-        <p id="erreur_message">veuillez remplir tout les champs</p>
+        <p id="erreur_message">veuillez remplir tout les champs et ajouter des photos</p>
         <div className="Container_input_info">
           <input
             className="seachinput_deposer"
@@ -174,13 +192,13 @@ const Deposerai = () => {
           </div>
           <input
             className="seachinput_deposer"
-            type="text"
+            type="number"
             placeholder="prix"
             onChange={(e) => setPrix(e.target.value)}
           />
           <input
             className="seachinput_deposer"
-            type="text"
+            type="number"
             placeholder="surface"
             onChange={(e) => setSurface(e.target.value)}
           />

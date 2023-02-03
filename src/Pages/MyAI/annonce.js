@@ -4,6 +4,8 @@ import './style.css'
 import MesAI from '../../Components/MesAi/MesAi';
 import axios from "axios";
 import jwt_decode from "jwt-decode";
+import SideBar from '../../Components/SideBar2'
+import NavBar from '../../Components/NavBar2'
 const AnnoncePage = () => {
     const [myannounces,SetMyanounces]=useState(null);
     const [aiispending,setAiispending]=useState(true);
@@ -43,10 +45,16 @@ const AnnoncePage = () => {
         //  setAiispending(false)
         // })
        },[])
-
+       const [isOpen, setIsOpen]=useState(false);
+    const toggle = () => {
+        setIsOpen(!isOpen);
+    };
     return ( 
         <div>
-        <h2 className='annoncesh2'>my annonces </h2>
+          <SideBar isOpen={isOpen} toggle={toggle}/>
+          <NavBar toggle={toggle}/>
+          <div style={{height:"80px"}} ></div>
+        
         {aiispending && <div>Loading ...</div>}
         {myannounces &&<MesAI myannounces={myannounces}/>}
         </div>
