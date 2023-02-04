@@ -93,6 +93,19 @@ cursor: pointer;
     border-bottom :3px solid #01bf71;// ajouter l'effet ki t'kon fiha  ...Mazouz
 }
 `;
+export const NavLinks_tmp = styled(LinkR)`
+color: #fff;
+display: flex;
+align-items: center;
+text-decoration: none;
+padding: 0 1rem; //16px
+height: 100%;
+cursor: pointer;
+
+&.active {
+    border-bottom :3px solid #01bf71;// ajouter l'effet ki t'kon fiha  ...Mazouz
+}
+`;
 //========================================================================================================
 //========================================================================================================
 export const NavBtn = styled.nav`

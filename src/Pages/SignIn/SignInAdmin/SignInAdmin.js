@@ -3,6 +3,8 @@ import jwt_decode from "jwt-decode";
 import { NavBtnLink, NavBtn } from './SigninPassElements'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import SideBar from "../../../Components/SideBar2";
+import NavBar from "../../../Components/NavBar2";
 
 
 
@@ -80,24 +82,42 @@ const SignInAdminPage = () => {
 
   // si on a pas de user :sign in button 
   // si on a un user : afficher log out button
+  const [isOpen, setIsOpen] = useState(false);
+  const toggle = () => {
+    setIsOpen(!isOpen);
+  };
   return (
-    <div className="S">
-      <h1>SigninPageAdmin</h1>
 
+    <div >
+      <SideBar isOpen={isOpen} toggle={toggle} />
+      <NavBar toggle={toggle} />
+      <div style={{ height: "80px" }}></div>
+      <section className="section-login">
+      <div className="S container-1-login">
+      <h1 className="login-message" >Bienvenue dans la page du login du admin </h1>
+      <div>
+      <p id="messg-selction-account">veuillez selection votre compte google </p>
       <div  className='btnsigin'  id="signInDiv"></div>
-      {Object.keys(user).length !== 0 &&
+      </div>
+      {/* {Object.keys(user).length !== 0 &&
         <button className='btnlogout' onClick={(e) => handleSignOut(e)}> Sign Out</button>
-      }
+      } */}
       {user &&
         <div>
           <img src={user.picture} alt='' />
           <h3> {user.name}</h3>
         </div>
       }
-      {Object.keys(user).length !== 0 &&
+      </div>
+      <div className="container-2-login">
+      <img   className="imag-login-hide" src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=773&q=80"  alt="image d'une maison"  />
+
+    </div>
+      {/* {Object.keys(user).length !== 0 &&
         <NavBtn>
           <NavBtnLink to='/Signin/SigninAdminPass/SigninAdmin/Admin'> Get Started   </NavBtnLink>
-        </NavBtn>}
+        </NavBtn>} */}
+        </section>
     </div>
 
   );

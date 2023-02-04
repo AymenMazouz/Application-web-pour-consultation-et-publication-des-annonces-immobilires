@@ -13,20 +13,19 @@ import DetailAI from "./Pages/DetailAI/detailAI";
 import Deposerai from "./Pages/DeposerAI/deposerAI";
 import Admin from "./Pages/Admin/admin";
 import PrivateRoutes from "./Pages/PrivateRoutes/PrivateRouts";
+import Chat from "./Pages/chat/chat";
+import Chatview from "./Pages/chat_without_send/chat_noSend";
 
 function App() {
   return (
     <Routes>
       <Route element={<PrivateRoutes />}>
-        <Route path="/" element={<Home />} />
+        
 
-        <Route path="/Signin" element={<SigninPage />} />
-        <Route path="/Signin/SigninAdminPass" element={<SigninPagepass />} />
+        
+        
         <Route path="/Signin/SigninUser/Main" element={<MainPage />} />
-        <Route
-          path="/Signin/SigninAdminPass/SigninAdmin"
-          element={<SignInAdminPage />}
-        />
+        
         <Route
           path="/Signin/SigninAdminPass/SigninAdmin/Admin"
           element={<AdminPage />}
@@ -45,10 +44,19 @@ function App() {
           element={<Deposerai />}
         />
         <Route path="/Signin/SigninUser/Admin" element={<Admin />} />
+        <Route path="/Signin/SigninUser/Main/chat/:id" element={<Chat />} />
+        <Route path="/Signin/SigninUser/Main/chat_View" element={<Chatview />} />
       </Route>
-
+      <Route
+          path="/Signin/SigninAdminPass/SigninAdmin"
+          element={<SignInAdminPage />}
+        />
+      <Route path="/Signin/SigninAdminPass" element={<SigninPagepass />} />
+      <Route path="/Signin" element={<SigninPage />} />
+      <Route path="/" element={<Home />} />
       <Route path="/Signin/Signinuser" element={<SigninPageUser />} />
     </Routes>
+    
   );
 }
 

@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useState } from 'react';
 import { FaBars } from 'react-icons/fa'
 
 import { 
@@ -10,9 +11,20 @@ NavMenu,
 NavItem,
 NavLinks,
 NavBtn,
-NavBtnLink} from './NavBarElements';
+NavBtnLink,
+NavLinks_tmp} from './NavBarElements';
 
 const NavBar = ({ toggle }) => {
+    const [connexion,setConnexion]=useState(false)
+    useEffect(()=>{
+        if (localStorage.getItem("token")) {
+            setConnexion(true)
+          }
+    },[])
+    function logout(){
+        localStorage.removeItem("token");
+        navigate("/", { replace: false });
+    }
     return (
         <>
             <Nav>
@@ -34,12 +46,16 @@ const NavBar = ({ toggle }) => {
                              <NavLinks to='services'>Services</NavLinks>
                          </NavItem>
                          <NavItem>
-                             <NavLinks to='/Signin'>Sign Up</NavLinks>
+                             <NavLinks_tmp to='/Signin/SigninUser/Main/lyes'>Get Started </NavLinks_tmp>
                          </NavItem>
                  </NavMenu>
-                     <NavBtn>
+                     
+                     {!connexion &&<NavBtn>
                         <NavBtnLink to='/Signin'> Sign In  </NavBtnLink>
-                     </NavBtn>
+                     </NavBtn>}
+                     {connexion &&<NavBtn>
+                        <NavBtnLink onClick={()=>{logout()}}> Deconnexion  </NavBtnLink>
+                     </NavBtn> }
                 </NavbarContainer>
             </Nav>
         </>

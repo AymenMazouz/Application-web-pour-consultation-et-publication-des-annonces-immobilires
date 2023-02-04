@@ -1,7 +1,17 @@
-import React from 'react'
+import React, { useEffect } from 'react';
 import { SideBarContainer, Icon, CloseIcon, SideBarLink, SideBarMenu, SideBarRoute, SideBarWrapper, SideBtnWrap } from './SideBarElements'
-
+import { useState } from 'react';
 const SideBar = ({isOpen,toggle}) => {
+    const [connexion,setConnexion]=useState(false)
+    useEffect(()=>{
+        if (localStorage.getItem("token")) {
+            setConnexion(true)
+          }
+    },[])
+    function logout(){
+        localStorage.removeItem("token");
+        navigate("/", { replace: false });
+    }
     return (
         <SideBarContainer isOpen={isOpen} onClick={toggle}>
             <Icon onClick={toggle} >
@@ -14,9 +24,12 @@ const SideBar = ({isOpen,toggle}) => {
                     <SideBarLink onClick={toggle} to='services'>Services</SideBarLink>
                     <SideBarLink onClick={toggle} to='signup' >Sign Up</SideBarLink>
                 </SideBarMenu>
-                <SideBtnWrap>
+                {!connexion &&<SideBtnWrap>
                     <SideBarRoute to='/Signin'> Sign In</SideBarRoute>
-                </SideBtnWrap> 
+                </SideBtnWrap>} 
+                {connexion &&<SideBtnWrap>
+                    <SideBarRoute onClick={()=>{logout()}}> Deconnexion</SideBarRoute>
+                </SideBtnWrap>} 
             </SideBarWrapper> 
         </SideBarContainer>
     )

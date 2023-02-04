@@ -1,7 +1,9 @@
 import styled from "styled-components";
 import { Link} from 'react-scroll'
+import { Link as LinkR } from 'react-router-dom'
 
-export const Button = styled(Link)` //#0a58bf
+// export const Button = styled(LinkR)` //#0a58bf      Link
+export const Button = styled(LinkR)`
 border-radius: 50px;
 background: ${({ primary }) => (primary ? '#0a58bf' : '#010606')};
 white-space: nowrap;

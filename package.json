@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fortawesome/free-regular-svg-icons": "^6.2.1",
+    "@fortawesome/free-solid-svg-icons": "^6.2.1",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -11,14 +14,17 @@
     "maplibre-gl": "^2.1.9",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-google-autocomplete": "^2.7.2",
     "react-icons": "^4.7.1",
     "react-map-gl": "^7.0.16",
+    "react-places-autocomplete": "^7.3.0",
     "react-router-dom": "^6.6.1",
     "react-scripts": "5.0.1",
     "react-scroll": "^1.8.9",
     "styled-components": "^5.3.6",
     "web-vitals": "^2.1.4"
   },
+  
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -42,5 +48,12 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.2.4"
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "main": "tailwind.config.js",
+  "author": "",
+  "license": "ISC"
 }

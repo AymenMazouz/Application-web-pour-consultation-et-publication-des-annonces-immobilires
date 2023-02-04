@@ -2,216 +2,120 @@
 import React, { useState, useEffect } from "react";
 import SearchBar from "../../Components/SearchBar";
 import Map_Annonce from "../../Components/Map_Annonce/map_annonce";
-import img from "../../Images/img.png";
-import Button from "../../Components/Footer/Button";
-import DetailAI from "../DetailAI/detailAI";
-import { Router, Route } from "react-router-dom";
 import axios from "axios";
-import SideBar from '../../Components/SideBar2'
-import NavBar from '../../Components/NavBar2'
+import SideBar from "../../Components/SideBar2";
+import NavBar from "../../Components/NavBar2";
 import "./style.css";
 
-
-
+// page pour la recherche des annonces et l'affichage des annonces
 const LyesPage = () => {
   const [announces, SetAnounces] = useState(null);
   const [announcesall, SetAnnouncesall] = useState(null);
   const [aiispending, setAiispending] = useState(true);
   const [error, setError] = useState(null);
-  const[page,setPage]=useState(1)
-  // var page=1;
-  const[suivant,setSuivant]=useState(false)
-  const[precedent,setPrecedent]=useState(false)
-  const[search,setSearch]=useState(false)
+  const [page, setPage] = useState(1);
+  const [suivant, setSuivant] = useState(false);
+  const [precedent, setPrecedent] = useState(false);
+  const [search, setSearch] = useState(false);
 
-
+  // cette fonction permet d'otenir les annonces de la base de donné 10 annonces par page
   async function fetchData(nbpage) {
-    // const res = await axios.get("http://127.0.0.1:5000/annonceget");
-    // console.log("pageeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",page);
-    const res = await axios.get("http://127.0.0.1:5000//annoncegetnew/"+nbpage);
+    const res = await axios.get(
+      "http://127.0.0.1:5000//annoncegetnew/" + nbpage
+    );
     console.log(res.data);
     SetAnounces(res.data.announces);
     SetAnnouncesall(res.data.announces);
     setAiispending(false);
     setError(null); // ...
-    setPrecedent(res.data.postspre)
-    setSuivant(res.data.postssuiv)
-    setPage(res.data.postspage)
+    setPrecedent(res.data.postspre);
+    setSuivant(res.data.postssuiv);
+    setPage(res.data.postspage);
   }
-  
+
+  // utliser useEffect pour obtenir  les annonces des que la page s'affiche
   useEffect(() => {
     async function fetchData() {
-      // const res = await axios.get("http://127.0.0.1:5000/annonceget");
-      console.log("pageeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",page);
       const res = await axios.get("http://127.0.0.1:5000//annoncegetnew/1");
       console.log(res.data);
       SetAnounces(res.data.announces);
       SetAnnouncesall(res.data.announces);
       setAiispending(false);
       setError(null); // ...
-      setPrecedent(res.data.postspre)
-      setSuivant(res.data.postssuiv)
-      setPage(res.data.postspage)
+      setPrecedent(res.data.postspre);
+      setSuivant(res.data.postssuiv);
+      setPage(res.data.postspage);
     }
-    
+
     fetchData();
-    
-
-    //  fetch('http://localhost:8000/announces').then(res =>{
-    //   if (!res.ok) {
-    //     throw Error('Could not fetch the data for that resource ')
-    //   }
-    //   return res.json();
-    //  }).then((data)=>{
-    //   SetAnounces(data)
-    //   SetAnnouncesall(data)
-    //   setAiispending(false)
-    //   setError(null)
-    //  }).catch(err =>{
-    //   setAiispending(false)
-    //   setError(err.message)
-    //  })
   }, []);
+
+  // cette fonction permet d'enoyer les parametre de rechecher fait par l'ulisateur vers le back-ed
   const handleFilter = async (annonceSearch) => {
-    // let annoncetmp = [];
-    // let tmpused = false;
-
-    // if (annonceSearch.search != "") {
-    //   annoncetmp = announcesall.filter(
-    //     (announce) => announce.title === annonceSearch.search
-    //   );
-    //   tmpused = true;
-    // }
-    // if (annonceSearch.type != "" && tmpused) {
-    //   annoncetmp = annoncetmp.filter(
-    //     (announce) => announce.type === annonceSearch.type
-    //   );
-    // } else {
-    //   if (annonceSearch.type != "" && !tmpused) {
-    //     annoncetmp = announcesall.filter(
-    //       (announce) => announce.type === annonceSearch.type
-    //     );
-    //     tmpused = true;
-    //   }
-    // }
-
-    // if (annonceSearch.wilaya != "" && tmpused) {
-    //   annoncetmp = annoncetmp.filter(
-    //     (announce) => announce.wilaya === annonceSearch.wilaya
-    //   );
-    // } else {
-    //   if (annonceSearch.wilaya != "" && !tmpused) {
-    //     annoncetmp = announcesall.filter(
-    //       (announce) => announce.wilaya === annonceSearch.wilaya
-    //     );
-    //     tmpused = true;
-    //   }
-    // }
-    // if (annonceSearch.commune != "" && tmpused) {
-    //   annoncetmp = annoncetmp.filter(
-    //     (announce) => announce.commune === annonceSearch.commune
-    //   );
-    // } else {
-    //   if (annonceSearch.commune != "" && !tmpused) {
-    //     annoncetmp = announcesall.filter(
-    //       (announce) => announce.commune === annonceSearch.commune
-    //     );
-    //     tmpused = true;
-    //   }
-    // }
-    // if (annonceSearch.datedebut != "" && tmpused) {
-    //   annoncetmp = annoncetmp.filter(
-    //     (announce) =>
-    //       new Date(announce.date) >= new Date(annonceSearch.datedebut)
-    //   );
-    // } else {
-    //   if (annonceSearch.datedebut != "" && !tmpused) {
-    //     annoncetmp = announcesall.filter(
-    //       (announce) =>
-    //         new Date(announce.date) >= new Date(annonceSearch.datedebut)
-    //     );
-    //     tmpused = true;
-    //   }
-    // }
-    // if (annonceSearch.datefin != "" && tmpused) {
-    //   annoncetmp = annoncetmp.filter(
-    //     (announce) => new Date(announce.date) <= new Date(annonceSearch.datefin)
-    //   );
-    // } else {
-    //   if (annonceSearch.datedebut != "" && !tmpused) {
-    //     annoncetmp = announcesall.filter(
-    //       (announce) =>
-    //         new Date(announce.date) <= new Date(annonceSearch.datefin)
-    //     );
-    //     tmpused = true;
-    //   }
-    // }
-    // if (
-    //   annonceSearch.datefin == "" &&
-    //   annonceSearch.datedebut == "" &&
-    //   annonceSearch.commune == "" &&
-    //   annonceSearch.wilaya == "" &&
-    //   annonceSearch.type == "" &&
-    //   annonceSearch.search == ""
-    // ) {
-    //   SetAnounces(announcesall);
-    // }
-    // supprime tout le contenue de cette fonction et remplace le par le fetch 
-
     await axios
       .post("http://127.0.0.1:5000/recherche", annonceSearch)
-      .then(() => {alert("Envoyé avec success")
-    setSearch(true)
-    })
+      .then(() => {
+        alert("Envoyé avec success");
+        setSearch(true);
+      })
       .catch(() => alert("Il y a un problème"));
     const res = await axios.get("http://127.0.0.1:5000/rechercheget");
     console.log(res.data.announces);
     SetAnounces(res.data.announces);
-    SetAnnouncesall(res.data.announces);  
-
-    //SetAnounces(annoncetmp);
-    //console.log(annoncetmp);
-
-
+    SetAnnouncesall(res.data.announces);
   };
-  const [isOpen, setIsOpen]=useState(false);
-    const toggle = () => {
-        setIsOpen(!isOpen);
-    };
+  const [isOpen, setIsOpen] = useState(false);
+  const toggle = () => {
+    setIsOpen(!isOpen);
+  };
+
+  // le code de la page de recherche et affichage des annonces
   return (
     <div>
-      <SideBar isOpen={isOpen} toggle={toggle}/>
-      <NavBar toggle={toggle}/>
-      <div style={{height:"80px"}} ></div>
-      <div className="div__search_main" >
-      {announcesall && <SearchBar handleFilter={handleFilter} />}
-      {search && (
-        <button  className="bt_annuler"
-          onClick={() => {
-            // SetAnounces(announcesall);
-            fetchData(1);
-            setSearch(false)
-          }}
-        >
-          annuler search
-        </button>
-      )}
+      {/* affichage de nav bar */}
+      <SideBar isOpen={isOpen} toggle={toggle} />
+      <NavBar toggle={toggle} />
+      <div style={{ height: "80px" }}></div>
+      <div className="div__search_main">
+        {/* recherche et filter */}
+        {announcesall && <SearchBar handleFilter={handleFilter} />}
+        {search && (
+          <button
+            className="bt_annuler"
+            onClick={() => {
+              fetchData(1);
+              setSearch(false);
+            }}
+          >
+            annuler search
+          </button>
+        )}
       </div>
       {error && <div> {error}</div>}
       {aiispending && <div>Loading ...</div>}
+      {/* affichage des annonces et Map */}
       {announcesall && <Map_Annonce announces={announces} />}
-      {/* {announcesall && console.log(announces)} */}
       <div className="div-next-pre">
-      {announcesall && precedent && <button className="next_pre_bt"  onClick={async()=>{
-        // page=page-1;
-        fetchData(page-1);
-      }}>previos</button>}
-      {announcesall && suivant &&<button className="next_pre_bt" onClick={async()=>{
-        console.log("page f2irst",page);
-        // page = page+1;
-        console.log("page s2econd",page+1);
-        fetchData(page+1);
-      }}>next</button>} 
+        {announcesall && precedent && (
+          <button
+            className="next_pre_bt"
+            onClick={async () => {
+              fetchData(page - 1);
+            }}
+          >
+            previos
+          </button>
+        )}
+        {announcesall && suivant && (
+          <button
+            className="next_pre_bt"
+            onClick={async () => {
+              fetchData(page + 1);
+            }}
+          >
+            next
+          </button>
+        )}
       </div>
     </div>
   );

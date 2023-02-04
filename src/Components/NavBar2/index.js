@@ -1,6 +1,6 @@
 import React from 'react';
 import { FaBars } from 'react-icons/fa'
-
+import { Outlet, Navigate } from "react-router-dom";
 import { 
 Nav,
 NavbarContainer,
@@ -13,6 +13,10 @@ NavBtn,
 NavBtnLink} from './NavBarElements';
 
 const NavBar = ({ toggle }) => {
+    function logout(){
+        localStorage.removeItem("token");
+        navigate("/", { replace: false });
+    }
     return (
         <>
             <Nav>
@@ -33,10 +37,13 @@ const NavBar = ({ toggle }) => {
                          <NavItem>
                              <NavLinks to='/Signin/SigninUser/Main/chat_View'>Messagerie</NavLinks>
                          </NavItem>
+                         <NavItem>
+                             <NavLinks to='/Signin/SigninUser/Main/deposerai'>Deposer annonce</NavLinks>
+                         </NavItem>
                          
                  </NavMenu>
                          <NavBtn>
-                        <NavBtnLink to='/Signin/SigninUser/Main/deposerai'> Deposer annonce </NavBtnLink>
+                        <NavBtnLink onClick={()=>{logout()}}> Deconnecter </NavBtnLink>
                      </NavBtn>
                 </NavbarContainer>
             </Nav>

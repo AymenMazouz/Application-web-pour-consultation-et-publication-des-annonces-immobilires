@@ -3,6 +3,9 @@ import jwt_decode from "jwt-decode";
 import { NavBtnLink, NavBtn } from "./SigninUserElements";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
+import "./stylelogin.css";
+import SideBar from "../../../Components/SideBar2";
+import NavBar from "../../../Components/NavBar2";
 
 const SigninPageUser = () => {
 
@@ -40,13 +43,11 @@ const SigninPageUser = () => {
     };
     axios
       .post("http://127.0.0.1:5000/userManager", userinfo)
-      .then(function(response) {
-        console.log("lyessssssssssssssssssssssssssssssss");
-        console.log("lyes reponse",response);
+      .then(function(response) {  
         existe=response.data.existe
-        
         if (existe==false) {
-        document.getElementById("section_remplir_info").style.display="block"
+        document.getElementById("section_remplir_info").style.display="flex"
+        document.getElementById("messg-selction-account").style.display="none"
        }
        else{
         navigate("/Signin/SigninUser/Main/lyes", { replace: false });
@@ -61,8 +62,6 @@ const SigninPageUser = () => {
     console.log("Encoded JWT ID token" + response.credential);
     localStorage.setItem("token", response.credential);
     var userObject = jwt_decode(response.credential);
-    console.log(userObject);
-
     console.log(userObject.family_name);
     handleSubmit(userObject);
     setUser(userObject);
@@ -123,26 +122,42 @@ const SigninPageUser = () => {
 
   // si on a pas de user :sign in button
   // si on a un user : afficher log out button
+  const [isOpen, setIsOpen] = useState(false);
+  const toggle = () => {
+    setIsOpen(!isOpen);
+  };
   return (
-    <div className="S">
-      <div id="signInDiv"></div>
-      {Object.keys(user).length !== 0 && (
+    <div>
+    <SideBar isOpen={isOpen} toggle={toggle} />
+      <NavBar toggle={toggle} />
+      <div style={{ height: "80px" }}></div>
+    <section className="section-login">
+    <div className="S container-1-login">
+    <h1 className="login-message">Bienvenue dans la page du login</h1>
+      
+     <div> 
+     <p id="messg-selction-account">veuillez selection votre compte google </p>
+      <div id="signInDiv"> 
+      </div>
+      </div>
+      
+      {/* {Object.keys(user).length !== 0 && (
         <button onClick={(e) => handleSignOut(e)}> Sign Out</button>
-      )}
+      )} */}
       {user && (
         <div>
           <img src={user.picture} alt="" />
           <h3> {user.name}</h3>
         </div>
       )}
-      <h1>SigninPageUser</h1>
-      {Object.keys(user).length !== 0 && (
+      
+      {/* {Object.keys(user).length !== 0 && (
         <NavBtn>
           <NavBtnLink to="/Signin/SigninUser/Main"> MAIN </NavBtnLink>
         </NavBtn>
-      )}
+      )} */}
       <section id="section_remplir_info" style={{display:"none"}}>
-      <div className="div_address">
+      <div className="div_address div_adress_tmp">
           <input
             className="seachinput_deposer"
             id="address"
@@ -170,7 +185,7 @@ const SigninPageUser = () => {
             
             }}
           />
-          <div className="div_sugg_adresse"id="div_sugg_adresse">
+          <div className="div_sugg_adresse div_sugg_adresse_tmp"id="div_sugg_adresse">
           {
             listPlace.map((item)=>{
               return(
@@ -191,11 +206,17 @@ const SigninPageUser = () => {
           </div>
           </div>
           <div>
-            <input type="text" maxlength = "10" placeholder="donnez votre Numero de téléphone"onChange={(e) => {setNumerpTlf(e.target.value)}}/>
+            <input className="nb_phone_input_login" type="text" maxlength = "10" placeholder="Numero de téléphone"onChange={(e) => {setNumerpTlf(e.target.value)}}/>
           </div>
-          <p id="message_erreur"style={{display:"none"}}>veuillez remplir les champs correctement </p>
-          <button onClick={complet_info}>Submite</button>
+          <p id="message_erreur"style={{display:"none", color:"rgb(252, 61, 61)"}}>veuillez remplir les champs correctement </p>
+          <button  className="bt_sb_info_login" onClick={complet_info}>Submite</button>
       </section>
+    </div>
+    <div className="container-2-login">
+      <img   className="imag-login-hide" src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=773&q=80"  alt="image d'une maison"  />
+    </div>
+
+    </section>
     </div>
   );
 };

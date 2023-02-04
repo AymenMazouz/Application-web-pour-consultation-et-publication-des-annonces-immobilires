@@ -1,0 +1,116 @@
+/* lyes */
+
+.tb_classe {
+  border-spacing: 1;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  text-align: left;
+}
+.th_tab {
+  height: 60px;
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+}
+
+.tbody {
+  display: table-row-group;
+  vertical-align: middle;
+  border-color: inherit;
+}
+.tr_cont {
+  width: 100%;
+  padding-left: 40px;
+  font-size: 15px;
+  color: gray;
+  line-height: 1.2;
+  font-weight: unset;
+  height: 50px;
+}
+tbody tr:nth-child(even) {
+  background-color: #f5f5f5;
+}
+
+@media screen and (max-width: 992px) {
+  table tbody tr td:before {
+    font-family: OpenSans-Regular;
+    font-size: 14px;
+    color: #999;
+    line-height: 1.2;
+    font-weight: unset;
+    position: absolute;
+    width: 40%;
+    left: 30px;
+    top: 0;
+  }
+  table tbody tr td:nth-child(1):before {
+    content: "Nom";
+  }
+  table tbody tr td:nth-child(2):before {
+    content: "Prenom";
+  }
+  table tbody tr td:nth-child(3):before {
+    content: "Email";
+  }
+  table tbody tr td:nth-child(4):before {
+    content: "Contact";
+  }
+  table tbody tr td:nth-child(5):before {
+    content: "Adresse";
+  }
+  table tbody tr td {
+    padding-left: 40% !important;
+    margin-bottom: 20px;
+  }
+  table > *,
+  table tr,
+  table td,
+  table th {
+    display: block;
+  }
+  .tr_cont {
+    height: auto;
+    padding: 3px;
+  }
+  .th_tab {
+    display: none;
+  }
+  
+  .tbody {
+    border: 4px solid #112a41;
+    border-radius: 25px;
+  }
+  .div-tab-user-tmp {
+    display: none;
+  }
+  .big-div-aff-user {
+    display: flex;
+    flex-direction: column;
+  }
+}
+table * {
+  position: relative;
+}
+.div-tab-user {
+  margin: 0 10px;
+}
+.div-bt-list-user {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70px;
+}
+.bt-nxt-prs {
+  background-color: #112a41;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 0 40px;
+  height: 40px;
+  margin: 10px 20px;
+}

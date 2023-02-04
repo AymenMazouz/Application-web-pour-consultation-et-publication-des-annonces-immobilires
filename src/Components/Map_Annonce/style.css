@@ -1,98 +1,90 @@
 /* lyes */
-@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@1,800&display=swap');
-*{
-    margin: 0;
-    padding: 0;
-    font-family: 'Encode Sans Expanded',sans-serif;
+@import url("https://fonts.googleapis.com/css2?family=Mulish:ital,wght@1,800&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Encode Sans Expanded", sans-serif;
 }
 
-.ContainerMap_Annonce{
-    display: flex;
-    justify-content: center;
-    
+.ContainerMap_Annonce {
+  display: flex;
+  justify-content: center;
 }
 
-.map{
-flex-basis: 50%;
-height: 600px;
-background: #f3f2f2;
-/* border: 5px solid black; */
-
+.map {
+  flex-basis: 50%;
+  height: 600px;
+  background: #f3f2f2;
 }
 
-.Containerannonce{
-    flex-basis: 50%;
-    padding: 20px;
-    flex-grow: 1;
-    background: #f3f2f2;
-    display: flex;
-    flex-wrap: wrap;
-    overflow-y: scroll;
-    justify-content: center;
-    height: 600px;
-    cursor: pointer;
-
+.Containerannonce {
+  flex-basis: 50%;
+  padding: 20px;
+  flex-grow: 1;
+  background: #f3f2f2;
+  display: flex;
+  flex-wrap: wrap;
+  overflow-y: scroll;
+  justify-content: center;
+  height: 600px;
+  cursor: pointer;
 }
 
-.annonce{
-    background-color: #fff;
-    border: 1px solid #f1f2f4;
-    border-radius: 8px;
-    margin-bottom: 13px;
-    overflow: hidden;
-    width: 50%;
-    /* max-width: 280px;    */
-    text-decoration: none;
-    color: black;
+.annonce {
+  background-color: #fff;
+  border: 1px solid #f1f2f4;
+  border-radius: 8px;
+  margin-bottom: 13px;
+  overflow: hidden;
+  width: 50%;
+  text-decoration: none;
+  color: black;
 }
-.imgai{
-    max-width: 100%;
-    height: auto;
-}
-
-.prix{
-    font-size : 24px;
-    font-weight: 700;
-    font-family: 'Mulish',sans-serif;
-    padding-left: 15px;
-    
-}
-.adr{
-    line-height: 1.5;
-    color: #95a0aa;
-    padding-left: 15px;
-    max-height: 45px;
-    overflow-y: hidden;
+.imgai {
+  max-width: 100%;
+  height: auto;
 }
 
-.TypeSurface{
-display: flex;
-flex-wrap: nowrap;
-justify-content: flex-start;
-padding-left: 15px;
+.prix {
+  font-size: 24px;
+  font-weight: 700;
+  font-family: "Mulish", sans-serif;
+  padding-left: 15px;
 }
-.typeai{
-    margin-right: 20% ;
+.adr {
+  line-height: 1.5;
+  color: #95a0aa;
+  padding-left: 15px;
+  max-height: 45px;
+  overflow-y: hidden;
+}
+
+.TypeSurface {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  padding-left: 15px;
+}
+.typeai {
+  margin-right: 20%;
 }
 
 @media (max-width: 1200px) {
-    .annonce{
-        width: 80%;
-    }
+  .annonce {
+    width: 80%;
+  }
 }
 @media (max-width: 650px) {
-    .ContainerMap_Annonce{
-        flex-direction: column;
-    }
-    .map{
-        flex-basis: auto;
-    }
-    .Containerannonce{
-        flex-basis: auto;
-    }
-    .annonce{
-        width: 50%;
-    }
+  .ContainerMap_Annonce {
+    flex-direction: column;
+  }
+  .map {
+    flex-basis: auto;
+  }
+  .Containerannonce {
+    flex-basis: auto;
+  }
+  .annonce {
+    width: 50%;
+  }
 }
-
-

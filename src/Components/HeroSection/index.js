@@ -22,7 +22,8 @@ const HeroSection = () => {
                   home buying and selling process</HeroP>
                 <HeroBtnWrapper>
                     <Button
-                      to='/Signin'
+                      to='/Signin/SigninUser/Main/lyes'
+                      // onClick={()=>{navigate("/Signin/SigninUser/Main/lyes", { replace: false });}}
                     onMouseEnter={onHover}
                     onMouseLeave={onHover}
                     primary='true'
