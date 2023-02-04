@@ -8,6 +8,7 @@ import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import SideBar from "../../Components/SideBar2";
 import NavBar from "../../Components/NavBar2";
+import Footer from "../../Components/Footer/Footer";
 
 
 // utliser dans suggerer des addresse
@@ -66,8 +67,8 @@ const Deposerai = () => {
   const [adresse, setAdresse] = useState("");
   const [prix, setPrix] = useState("");
   const [surface, setSurface] = useState("");
-  const [longitude, setLongitude] = useState("");
-  const [latitude, setLatitude] = useState("");
+  const [longitude, setLongitude] = useState(0);
+  const [latitude, setLatitude] = useState(0);
   const [listecommune, setListecommune] = useState(null);
   const [listewilaya, setListewilaya] = useState(null);
   const [images, setImages] = useState([]);
@@ -113,11 +114,9 @@ const Deposerai = () => {
       wilaya == "" ||
       commune == "" ||
       prix == "" ||
-      surface == "" ||
-      longitude == "" ||
-      latitude == "" ||
-      images.length == 0
+      surface == "" 
     ) {
+      
       document.getElementById("erreur_message").style.display = "block";
 
       // scrollTo(0,0)
@@ -168,10 +167,11 @@ const Deposerai = () => {
       <div style={{ height: "80px" }}></div>
       <div className="Container_input_deposer">
         <p id="erreur_message">
-          veuillez remplir tout les champs et ajouter des photos
+          veuillez remplir tout les champs
         </p>
         <div className="Container_input_info">
           <input
+            id="titre_vl_test"
             className="seachinput_deposer"
             type="text"
             placeholder="title"
@@ -179,12 +179,14 @@ const Deposerai = () => {
           />
           <textarea
             className="seachinput_deposer description"
+            id="descri_vl_test"
             type="text"
             placeholder="description"
             onChange={(e) => setDescription(e.target.value)}
           />
           <div className="div-type-cat">
             <select
+              id="type_vl_test"
               className="selectcase_deposer"
               onChange={(e) => setType(e.target.value)}
             >
@@ -197,6 +199,7 @@ const Deposerai = () => {
               <option value="Commercial">Commercial</option>
             </select>
             <select
+              id="cat_vl_test"
               className="type selectcase_deposer"
               onChange={(e) => setCategorie(e.target.value)}
             >
@@ -211,12 +214,14 @@ const Deposerai = () => {
             </select>
           </div>
           <input
+            id="prix_vl_test"
             className="seachinput_deposer"
             type="number"
             placeholder="prix"
             onChange={(e) => setPrix(e.target.value)}
           />
           <input
+            id="surfa_vl_test"
             className="seachinput_deposer"
             type="number"
             placeholder="surface"
@@ -225,6 +230,7 @@ const Deposerai = () => {
           {/* pour remplir  adresse et contien aussi la div de la suggestion  */}
           <div className="div_address">
             <input
+              
               className="seachinput_deposer"
               id="address"
               type="text"
@@ -291,6 +297,7 @@ const Deposerai = () => {
           <div className="div-type-cat">
             {listewilaya && (
               <select
+                id="willaya_vl_test"
                 className="commune selectcase_deposer"
                 onChange={(e) => setWilaya(e.target.value)}
               >
@@ -304,6 +311,7 @@ const Deposerai = () => {
             )}
             {listecommune && listewilaya && (
               <select
+              id="commune_vl_test"
                 className="commune selectcase_deposer"
                 onChange={(e) => setCommune(e.target.value)}
               >
@@ -355,7 +363,7 @@ const Deposerai = () => {
       </div>
       <div className="div-sb-deposerAI">
       <button
-        
+        id="bt_sb_vl_test"
         className="searchbutton sb-bt-deposeAI"
         type="submit"
         value="Submit"
@@ -364,6 +372,7 @@ const Deposerai = () => {
         submit
       </button>
       </div>
+      <Footer />
     </section>
   );
 };

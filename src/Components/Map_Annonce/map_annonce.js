@@ -42,13 +42,20 @@ const Map_Annonce = (prop) => {
             to={`/Signin/SigninUser/Main/lyes/detaiAI/${announce.id}`}
           >
             <div className="divimg">
-              <img
+              {announce.images.length !=0 && <img
                 className="imgai"
                 src={announce.images[0]}
                 alt="AI IMAGE"
                 width="100%"
                 style={{ maxHeight: "300px", minHeight: "300px" }}
-              />
+              />}
+              {announce.images.length ==0 && <img
+                className="imgai"
+                src={require("../../Images/img.png")}
+                alt="AI IMAGE"
+                width="100%"
+                style={{ maxHeight: "300px", minHeight: "300px" }}
+              />}
             </div>
 
             <p className="prix">{announce.prix} DA</p>

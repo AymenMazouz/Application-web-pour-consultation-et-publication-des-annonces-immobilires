@@ -6,6 +6,7 @@ import axios from "axios";
 import jwt_decode from "jwt-decode";
 import SideBar from "../../Components/SideBar2";
 import NavBar from "../../Components/NavBar2";
+import Footer from "../../Components/Footer/Footer";
 
 // page permet d'afficher les annonces de l'utilisateur 
 const AnnoncePage = () => {
@@ -45,6 +46,7 @@ const AnnoncePage = () => {
       {aiispending && <div>Loading ...</div>}
       {/* affichage des annonces et la map */}
       {myannounces && <MesAI myannounces={myannounces} />}
+      <Footer />
     </div>
   );
 };

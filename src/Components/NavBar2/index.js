@@ -38,7 +38,7 @@ const NavBar = ({ toggle }) => {
                              <NavLinks to='/Signin/SigninUser/Main/chat_View'>Messagerie</NavLinks>
                          </NavItem>
                          <NavItem>
-                             <NavLinks to='/Signin/SigninUser/Main/deposerai'>Deposer annonce</NavLinks>
+                             <NavLinks id='deposer_AI_bt_test' to='/Signin/SigninUser/Main/deposerai'>Deposer annonce</NavLinks>
                          </NavItem>
                          
                  </NavMenu>

@@ -9,7 +9,9 @@ import axios from "axios";
 const MesAI = (propAI) => {
   const [announces, SetAnnounces] = useState(propAI.myannounces);
 // pour supprimer l'annonce
+
   const handledelete = async (id) => {
+    console.log("lyessssssss",id)
     axios
       .post("http://127.0.0.1:5000/delete/" + id)
       .then(function(response) {
@@ -52,12 +54,21 @@ const MesAI = (propAI) => {
         {announces.map((announce) => (
           <div className="my_ai_annonce" key={announce.id}>
             <div className="my_ai_divimg">
-              <img
+              {announce.images.length !=0 &&<img
                 className="my_ai_imgai"
                 src={announce.images[0]}
                 alt="AI IMAGE"
                 width="100%"
-              />
+                style={{ maxHeight: "300px", minHeight: "300px" }}
+                
+              />}
+              {announce.images.length ==0 && <img
+                className="imgai"
+                src={require("../../Images/img.png")}
+                alt="AI IMAGE"
+                width="100%"
+                style={{ maxHeight: "300px", minHeight: "300px" }}
+              />}
             </div>
             <p className="my_ai_prix">{announce.prix} DA</p>
             <p className="my_ai_adr">{announce.adresse}</p>

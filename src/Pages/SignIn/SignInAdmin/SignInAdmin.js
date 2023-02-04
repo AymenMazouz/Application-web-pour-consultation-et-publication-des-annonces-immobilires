@@ -39,7 +39,10 @@ const SignInAdminPage = () => {
         .then(function(response) {
           console.log(response);
           if (response.data.type) {
+
+            console.log("lyesssssssssssss")
             navigate("/Signin/SigninUser/Admin", { replace: false });
+            console.log("challllllllll")
           }else{
             alert("access denied !!! you are not an admin");
             setUser({});
@@ -53,7 +56,9 @@ const SignInAdminPage = () => {
   const [user, setUser] = useState({}) // dir b redux bch tkon global
   function handleCallbackResponse(response) {
     console.log("Encoded JWT ID token" + response.credential);
+    localStorage.setItem("token", response.credential);
     var userObject = jwt_decode(response.credential);
+    
     console.log(userObject);
     handleSubmit(userObject)
     setUser(userObject);

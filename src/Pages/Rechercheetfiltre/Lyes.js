@@ -6,6 +6,7 @@ import axios from "axios";
 import SideBar from "../../Components/SideBar2";
 import NavBar from "../../Components/NavBar2";
 import "./style.css";
+import Footer from '../../Components/Footer/Footer'
 
 // page pour la recherche des annonces et l'affichage des annonces
 const LyesPage = () => {
@@ -55,7 +56,7 @@ const LyesPage = () => {
     await axios
       .post("http://127.0.0.1:5000/recherche", annonceSearch)
       .then(() => {
-        alert("Envoyé avec success");
+        // alert("Envoyé avec success");
         setSearch(true);
       })
       .catch(() => alert("Il y a un problème"));
@@ -117,6 +118,7 @@ const LyesPage = () => {
           </button>
         )}
       </div>
+      <Footer />
     </div>
   );
 };

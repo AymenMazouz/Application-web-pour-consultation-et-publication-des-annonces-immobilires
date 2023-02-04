@@ -6,6 +6,7 @@ import SideBar from "../../Components/SideBar2";
 import NavBar from "../../Components/NavBar2";
 import Affiche_user from "../../Components/Affiche_List_User/Affiche_user";
 import jwt_decode from "jwt-decode";
+import Footer from "../../Components/Footer/Footer";
 
 // la page des Admin pour faire le scrapping et affichage des utilisateur
 const Admin = () => {
@@ -39,6 +40,7 @@ const Admin = () => {
         messagesEnvoyer,
         messagesRecu,
       };
+      console.log(userObject)
       await axios
         .post("http://127.0.0.1:5000/adminManager", userinfo)
         .then(function(response) {
@@ -62,6 +64,7 @@ const Admin = () => {
       <Scrap />
       {/* pour afficher les utilisateur */}
       <Affiche_user />
+      <Footer />
     </div>
   );
 };

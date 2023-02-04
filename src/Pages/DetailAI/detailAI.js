@@ -10,6 +10,7 @@ import axios from "axios";
 import { NavBtnLink, NavBtn } from "../../Pages/MainElements";
 import SideBar from "../../Components/SideBar2";
 import NavBar from "../../Components/NavBar2";
+import Footer from "../../Components/Footer/Footer";
 // la page pour l'affichage des details de l'annonces
 const Detailai = () => {
   const { id } = useParams();
@@ -322,6 +323,7 @@ const Detailai = () => {
           </div>
         </section>
       )}
+      <Footer />
     </div>
   );
 };
