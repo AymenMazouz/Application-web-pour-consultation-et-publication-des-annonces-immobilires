@@ -22,7 +22,7 @@ const HeroSection = () => {
                   home buying and selling process</HeroP>
                 <HeroBtnWrapper>
                     <Button id='get_started_bt_test'
-                      to='/Signin/SigninUser/Main/lyes'
+                      to='/Signin/SigninUser/Main/recherche'
                       // onClick={()=>{navigate("/Signin/SigninUser/Main/lyes", { replace: false });}}
                     onMouseEnter={onHover}
                     onMouseLeave={onHover}

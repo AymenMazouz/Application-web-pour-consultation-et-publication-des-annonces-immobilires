@@ -13,13 +13,22 @@ def test_ajouter_annonce():
     print(response.json)
 
 
-# si cette fonction n'a pas fonction veut pas dire que elle ne marche pas car il se peut que sera tester avant d'ajouter l'annonces donc il faut la rexecuter pour confimer 
-# car dans notre cas on ajout une annoces et on test si elle est lister par cette fonction
+# ce test fonctionne si seulement la fonction test_ajouter_annonce est executer avant test_get_annonce car on test si l'element est bien ajouter en l'affichant
+# il se peut que ne fonction pas si on ajoute une autre annonce avant de test cette fonction car dans cette fonction one test si le premier element et == exemple_annonce
+# donc pour que ce test fonction parfaitement veilllez executer test_ajouter_annonce() ensuite test_get_annonce() sans ajouter une autre annoce a la base de donnee entre l'execution de ses deux fonction 
 def test_get_annonce():
     response= app.test_client().get('/annoncegetnew/1')
     assert response.status_code ==200
     assert b'title1' in response.data
-    print(response.json)
+    json_annonce=response.json['announces']
+    json_annonce_first=json_annonce[0]
+    assert "adresse1" == json_annonce_first['adresse']
+    assert "title1" == json_annonce_first['title']
+    assert "description1" == json_annonce_first['description']
+
+
+
+
 
 # on test quand l'ulisateur envoie une requete recherche  pour chaque champs demander si on recoit le champs envoyer du front
 
@@ -29,7 +38,7 @@ def test_champ_recherche_champ1():
     assert response.status_code ==200
     assert recherche1 == response.json
 
-# on test le resultat envoiyer au front si il contient description 1 demader par l'user dans la fonction precedente
+# on test le resultat envoyer au front si il contient description1 demander par l'user dans la fonction precedente
 def test_send_recherche_champ1():
     response =app.test_client().get('/rechercheget')
     assert response.status_code ==200
@@ -99,13 +108,29 @@ def test_send_recherche_champ6():
     assert response.status_code ==200
     assert b'title1' in response.data                 
   
-#on peut pas tester vraiment cette fonction car la base de donnee change donc on peux pas sibler un id pour voir si cette methode mous donne le resulat voulu 
-# pour ce test fait pourle id =1 
+#tester si on peut obtenier l'annoce du id ==1 ce test fonction seulment si l'annoce du id=1 existe dans la base de donne
+# si ce test ne passe pas veuillez confirmer que la base de donné contient le id = 1
 def test_getinfo():
     response =app.test_client().get('/infoAI/1')
     assert response.status_code ==200
-    print(response.json)
-    # assert response.json.announces.id == 1
-    # assert b''id': 1''
+    json_var=response.json['announces']
+    json_var_oneAI=json_var[0]
+    assert 1 == json_var_oneAI['id']
 
-# test_getinfo()
+
+# on test si on peut avoir les annoce de kl_chalal@esi.dz
+def test_get_my_annonce():
+    response =app.test_client().post('/getmyannonce',json={'EmailUser': 'kl_chalal@esi.dz'})
+    assert response.status_code ==200
+    assert b'title1' in response.data
+    assert b'description1' in response.data
+    assert b'kl_chalal@esi.dz' in response.data
+    
+
+
+# ce test est fait pour annonce id =2 si ce test ne fonction pas veuillez verfie si le id existe dans la base de donne
+# la base de donne ce trouve dans le fichier instance dans le dossier courant 
+# def test_delete_annonce():
+#     response = app.test_client().post("/delete/2")
+#     assert response.status_code ==200    
+#     assert response.json['delete']=='true'    

@@ -1,5 +1,7 @@
 from extentions import db
 
+
+# model de base de donnee 
 class annonce(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
     title = db.Column(db.String(length=200), nullable=False)
@@ -8,7 +10,7 @@ class annonce(db.Model):
     categorie = db.Column(db.String(length=80), nullable=False)
     wilaya = db.Column(db.String(length=80), nullable=False)
     commune = db.Column(db.String(length=70), nullable=False)
-    adresse = db.Column(db.String(length=150), nullable=False)
+    adresse = db.Column(db.String(length=250), nullable=False)
     prix = db.Column(db.String(length=150), nullable=False)
     surface = db.Column(db.String(length=50), nullable=False)
     longitude = db.Column(db.Integer(), nullable=False)
@@ -36,7 +38,7 @@ class annonce(db.Model):
             'email': self.email,
         }
 
-
+# modezl de la base de donne des utlisateur 
 class users(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
     admin = db.Column(db.Boolean(), default=False, nullable=False)
@@ -63,7 +65,7 @@ class users(db.Model):
             'messagesRecu': self.messagesRecu,  # liste des msg
         }
 
-
+# base de donne de la messagerie
 class Emails(db.Model):
     __tablename__ = 'Emails'
     id = db.Column(db.Integer, primary_key=True)

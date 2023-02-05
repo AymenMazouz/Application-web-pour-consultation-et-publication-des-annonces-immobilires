@@ -106,7 +106,7 @@ const Affiche_user = () => {
                   fetchData(page - 1);
                 }}
               >
-                previos
+                previous
               </button>
             )}
             {hasnext && (

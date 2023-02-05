@@ -13,7 +13,7 @@ const SideBar = ({isOpen,toggle}) => {
             </Icon>
             <SideBarWrapper>
                 <SideBarMenu>
-                    <SideBarLink onClick={toggle} to="/Signin/SigninUser/Main/lyes">Cherecher Annonce</SideBarLink>
+                    <SideBarLink onClick={toggle} to="/Signin/SigninUser/Main/recherche">Cherecher Annonce</SideBarLink>
                     <SideBarLink onClick={toggle} to='/Signin/SigninUser/Main/annonce'>Mes annonces</SideBarLink>
                     <SideBarLink onClick={toggle} to='/Signin/SigninUser/Main/chat_View'>Messagerie</SideBarLink>
                     <SideBarLink onClick={toggle} to='/Signin/SigninUser/Main/deposerai'>Deposer annonce</SideBarLink>

@@ -31,9 +31,7 @@ export default function Footer() {
                 <div className="brand">
                     <img src={logo} alt="Footer Logo" />
                     <p>
-                         copy past text from nowhere From Tron to Narnya, the idea to suddenly be transferred in another
-                        world, where you could move, feel, interact and communicate is a
-                        recurring theme in books, animes and movies.
+                    Sakeni makes the buying, selling, and renting process more efficient and convenient for all parties involved. Enjoy finding your new place after a couple of clicks.
                     </p>
                     <div className="mail-container">
                         <input type="email" placeholder="Enter Email" />

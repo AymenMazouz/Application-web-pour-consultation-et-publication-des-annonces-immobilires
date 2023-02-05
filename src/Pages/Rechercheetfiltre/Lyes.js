@@ -104,7 +104,7 @@ const LyesPage = () => {
               fetchData(page - 1);
             }}
           >
-            previos
+            previous
           </button>
         )}
         {announcesall && suivant && (

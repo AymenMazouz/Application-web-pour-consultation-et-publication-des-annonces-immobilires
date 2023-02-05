@@ -10,117 +10,27 @@ from bs4 import BeautifulSoup
 import re
 import json
 from extentions import db
-from model import annonce,users,Emails
+from model import annonce, users, Emails
 
 
 annoncepage = Blueprint("annoncepage", __name__,
                         static_folder="instance", template_folder="BACKEND_NEW")
 
-
-# annoncepage.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///BaseDedonnee.db'
-# db = SQLAlchemy(annoncepage)
 cors = CORS(annoncepage, resources={r"/*": {"origins": "*"}})
 
 
-# class annonce(db.Model):
-#     id = db.Column(db.Integer(), primary_key=True)
-#     title = db.Column(db.String(length=200), nullable=False)
-#     description = db.Column(db.String(length=5024), nullable=False)
-#     type = db.Column(db.String(length=80), nullable=False)
-#     categorie = db.Column(db.String(length=80), nullable=False)
-#     wilaya = db.Column(db.String(length=80), nullable=False)
-#     commune = db.Column(db.String(length=70), nullable=False)
-#     adresse = db.Column(db.String(length=150), nullable=False)
-#     prix = db.Column(db.String(length=150), nullable=False)
-#     surface = db.Column(db.String(length=50), nullable=False)
-#     longitude = db.Column(db.Integer(), nullable=False)
-#     latitude = db.Column(db.Integer(), nullable=False)
-#     images = db.Column(db.JSON)
-#     date = db.Column(db.DateTime())
-#     email = db.Column(db.String(length=100), nullable=False)
-
-#     def long(self):
-#         return {
-#             'id': self.id,
-#             'title': self.title,
-#             'description': self.description,
-#             'type': self.type,
-#             'categorie': self.categorie,
-#             'wilaya': self.wilaya,
-#             'commune': self.commune,
-#             'adresse': self.adresse,
-#             'prix': self.prix,
-#             'surface': self.surface,
-#             'longitude':  self.longitude,
-#             'latitude': self.latitude,
-#             'images': self.images,
-#             'date': self.date,
-#             'email': self.email,
-#         }
-
-
-# class users(db.Model):
-#     id = db.Column(db.Integer(), primary_key=True)
-#     admin = db.Column(db.Boolean(), default=False, nullable=False)
-#     nom = db.Column(db.String(length=50), nullable=False)
-#     prenom = db.Column(db.String(length=50), nullable=False)
-#     adresse = db.Column(db.String(length=150), nullable=False)
-#     email = db.Column(db.String(length=50), nullable=False)
-#     numerpTlf = db.Column(db.String(length=50), nullable=False)
-#     annonces = db.Column(db.JSON)
-#     messagesEnvoyer = db.Column(db.JSON)
-#     messagesRecu = db.Column(db.JSON)
-
-#     def long(self):
-#         return {
-#             'id': self.id,
-#             'admin': self.admin,
-#             'nom': self.nom,
-#             'prenom': self.prenom,
-#             'adresse': self.adresse,
-#             'email': self.email,
-#             'numerpTlf': self.numerpTlf,
-#             'annonces': self.annonces,  # liste des id
-#             'messagesEnvoyer': self.messagesEnvoyer,  # liste des msg
-#             'messagesRecu': self.messagesRecu,  # liste des msg
-#         }
-
-
-# class Emails(db.Model):
-#     __tablename__ = 'Emails'
-#     id = db.Column(db.Integer, primary_key=True)
-#     content = db.Column(db.String(800), nullable=False)
-#     subject = db.Column(db.String(200), nullable=False)
-#     Utilisateur_id = db.Column(db.Integer, nullable=False)
-#     DeposeurAn_id = db.Column(db.Integer, nullable=False)
-#     annonce_id = db.Column(db.Integer, nullable=False)
-#     date = db.Column(db.DateTime())
-
-#     @property
-#     def serialize(self):
-#         """Return object data in easily serializable format"""
-#         return {
-#             'id': self.id,
-#             'subject': self.subject,
-#             'content': self.content,
-#             'Userid': self.Utilisateur_id,
-#             'deposid': self.DeposeurAn_id,
-#             'annonceid': self.annonce_id,
-#             'date': self.date,
-
-#         }
-
-
+# ajouter une annoce a la base de donnee
 @annoncepage.post('/annonce')
 def ajouter_annonce():
     AIINFO = request.json
+    print(AIINFO)
     AiInofoDb = annonce(title=AIINFO['title'], description=AIINFO['description'], type=AIINFO['type'], categorie=AIINFO['categorie'],
                         wilaya=AIINFO['wilaya'], commune=AIINFO['commune'], adresse=AIINFO['adresse'], prix=AIINFO['prix'],
                         surface=AIINFO['surface'], longitude=AIINFO['longitude'], latitude=AIINFO[
                             'latitude'], images=AIINFO['images'], date=date.today(),
                         email=AIINFO['EmailUser']
                         )
-
+    print(AiInofoDb)
     db.session.add(AiInofoDb)
     db.session.commit()
     userannonce = users.query.filter(
@@ -131,12 +41,12 @@ def ajouter_annonce():
         else:
             userannonce.annonces = userannonce.annonces+[AiInofoDb.id]
     except:
-        print("user inexistant (annomalie car l'ulustateur doit s'authentifier avant d'ajouter une annonce)")        
+        print("user inexistant (annomalie car l'utilisateur doit s'authentifier avant d'ajouter une annonce)")
     db.session.commit()
 
     return ({"annonceAjouter": True})
 
-
+# avoir tout les annoce (old version ) cette fontion n'est pas utliser
 @annoncepage.get('/annonceget')
 def get_annonce_old():
     annoces = annonce.query.order_by(annonce.id.desc()).all()
@@ -155,7 +65,7 @@ def view(page):
 champRecherche = {'search': '', 'type': '', 'wilaya': '',
                   'commune': '', 'datedebut': '', 'datefin': ''}
 
-
+# recevoir les champs de recherche envoyer par l'utilisateur
 @annoncepage.post('/recherche')
 def champ_recherche():
     global champRecherche
@@ -163,7 +73,7 @@ def champ_recherche():
     print(champRecherche)
     return champRecherche
 
-
+# envoyer les annonces recherche a l'utilisateur (c'est a dire au front)
 @annoncepage.get('/rechercheget')
 def send_recherche():
     annoces = annonce.query.filter(annonce.description.like(
@@ -184,13 +94,15 @@ def send_recherche():
             champRecherche.get("datefin"), '%Y-%m-%d')]
     return jsonify({'announces': [ann.long() for ann in annoces]})
 
-
+# envoyer les info d'une annonces avec son id 
 @annoncepage.get('/infoAI/<int:announce_id>')
-def getinfo(announce_id):
+def get_info_annonce(announce_id):
     annoces = annonce.query.get(announce_id)
     user_reciver = users.query.filter(users.email == annoces.email).first()
 
     return jsonify({'announces': [annoces.long()], 'nom': user_reciver.nom, 'prenom': user_reciver.prenom, 'adresse': user_reciver.adresse})
+
+# cette fonction retourne les annonces d'un utlisateur
 
 
 @annoncepage.post('/getmyannonce')
@@ -202,17 +114,20 @@ def get_my_annonce():
     return jsonify({'announces': [ann.long() for ann in annoces]})
 
 
+# supprimer les annonces
 @annoncepage.post('/delete/<int:announce_id>')
 def delete_annonce(announce_id):
-    annoncedel = annonce.query.get(announce_id)
-    userinfo = users.query.filter(users.email == annoncedel.email).first()
-    annoncelist = userinfo.annonces
-    userinfo.annonces = []
-    db.session.delete(annoncedel)
-    db.session.commit()
-    annoncelist.remove(announce_id)
-    userinfo.annonces = annoncelist
-    db.session.commit()
+    try:
+        annoncedel = annonce.query.get(announce_id)
+        userinfo = users.query.filter(users.email == annoncedel.email).first()
+        annoncelist = userinfo.annonces
+        userinfo.annonces = []
+        db.session.delete(annoncedel)
+        db.session.commit()
+        annoncelist.remove(announce_id)
+        userinfo.annonces = annoncelist
+        db.session.commit()
+    except:
+        print("erreur")
     return jsonify({'delete': 'true'})
-
 

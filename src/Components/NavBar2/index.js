@@ -29,7 +29,7 @@ const NavBar = ({ toggle }) => {
                     </MobileIcon>
                     <NavMenu>
                          <NavItem>
-                                <NavLinks to="/Signin/SigninUser/Main/lyes">Cherecher Annonce</NavLinks>
+                                <NavLinks to="/Signin/SigninUser/Main/recherche">Cherecher Annonce</NavLinks>
                           </NavItem>
                          <NavItem>
                              <NavLinks to='/Signin/SigninUser/Main/annonce'>Mes annonces</NavLinks>

@@ -31,6 +31,7 @@ function App() {
           element={<AdminPage />}
         />
         <Route path="/Signin/SigninUser/Main/lyes" element={<Page />} />
+        <Route path="/Signin/SigninUser/Main/recherche" element={<Page />} />
         <Route
           path="/Signin/SigninUser/Main/annonce"
           element={<AnnoncePage />}
