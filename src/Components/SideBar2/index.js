@@ -1,7 +1,9 @@
 import React from 'react'
 import { SideBarContainer, Icon, CloseIcon, SideBarLink, SideBarMenu, SideBarRoute, SideBarWrapper, SideBtnWrap } from './SideBarElements'
+import { useNavigate } from 'react-router-dom';
 
 const SideBar = ({isOpen,toggle}) => {
+    const navigate = useNavigate();
         function logout(){
             localStorage.removeItem("token");
             navigate("/", { replace: false });

@@ -19,7 +19,8 @@ const SearchBar = ({handleFilter}) => {
             
           })
           .catch((err) => {
-            setError(err.message);
+            // setError(err.message);
+            console.log("erreur")
           });
           fetch("http://localhost:9000/wilaya/" )
           .then((res) => {
@@ -34,7 +35,8 @@ const SearchBar = ({handleFilter}) => {
             
           })
           .catch((err) => {
-            setError(err.message);
+            // setError(err.message);
+            console.log("erreur")
           });
       }, []);
     

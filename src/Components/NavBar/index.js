@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { FaBars } from 'react-icons/fa'
 import axios from 'axios';
 import jwt_decode from "jwt-decode";
+import { useNavigate } from 'react-router-dom';
 
 import { 
 Nav,
@@ -17,6 +18,7 @@ NavBtnLink,
 NavLinks_tmp} from './NavBarElements';
 
 const NavBar = ({ toggle }) => {
+    const navigate = useNavigate();
     const [connexion,setConnexion]=useState(false)
     const [admin,setAdmine]=useState(false)
     useEffect(()=>{

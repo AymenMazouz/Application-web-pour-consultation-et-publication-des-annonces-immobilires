@@ -40,7 +40,8 @@ const Deposerai = () => {
         setListecommune(data);
       })
       .catch((err) => {
-        setError(err.message);
+        // setError(err.message);
+        console.log("erreur")
       });
     fetch("http://localhost:9000/wilaya/")
       .then((res) => {
@@ -54,7 +55,8 @@ const Deposerai = () => {
         console.log(listewilaya);
       })
       .catch((err) => {
-        setError(err.message);
+        // setError(err.message);
+        console.log("erreur")
       });
   }, []);
 

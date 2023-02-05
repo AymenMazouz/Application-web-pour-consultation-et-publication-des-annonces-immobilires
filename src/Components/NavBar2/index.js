@@ -1,6 +1,8 @@
 import React from 'react';
 import { FaBars } from 'react-icons/fa'
-import { Outlet, Navigate } from "react-router-dom";
+import { Outlet } from "react-router-dom";
+import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { 
 Nav,
 NavbarContainer,
@@ -13,6 +15,7 @@ NavBtn,
 NavBtnLink} from './NavBarElements';
 
 const NavBar = ({ toggle }) => {
+    const navigate = useNavigate();
     function logout(){
         localStorage.removeItem("token");
         navigate("/", { replace: false });

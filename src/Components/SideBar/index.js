@@ -3,8 +3,11 @@ import { SideBarContainer, Icon, CloseIcon, SideBarLink, SideBarMenu, SideBarRou
 import { useState } from 'react';
 import jwt_decode from "jwt-decode";
 import axios from 'axios';
+import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const SideBar = ({isOpen,toggle}) => {
+    const navigate = useNavigate();
     const [connexion,setConnexion]=useState(false)
     const [admin,setAdmine]=useState(false)
     useEffect(()=>{
