@@ -9,6 +9,7 @@ from messagepage import messagepage
 from scrapingpage import scrapingpage
 from userpage import userpage
 from extentions import db
+from apiflask import APIFlask
 
 
 ##########################################
@@ -21,7 +22,9 @@ from model import annonce,users,Emails
 
 ######################################
 
-app =Flask(__name__)
+# app =Flask(__name__)
+
+app =APIFlask(__name__,docs_ui="swagger-ui",docs_path="/doc")
 app.register_blueprint(annoncepage,url_prefix="")
 app.register_blueprint(messagepage,url_prefix="")
 app.register_blueprint(scrapingpage,url_prefix="")

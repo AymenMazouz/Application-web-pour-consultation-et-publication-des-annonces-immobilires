@@ -8,8 +8,9 @@ from datetime import datetime
 # from main import db
 from extentions import db
 from model import annonce, users, Emails
+from apiflask import APIBlueprint
 
-userpage = Blueprint("userpage", __name__,
+userpage = APIBlueprint("userpage", __name__,
                      static_folder="instance", template_folder="BACKEND_NEW")
 cors = CORS(userpage, resources={r"/*": {"origins": "*"}})
 

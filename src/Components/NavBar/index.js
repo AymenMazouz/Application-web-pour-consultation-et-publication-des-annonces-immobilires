@@ -67,6 +67,7 @@ const NavBar = ({ toggle }) => {
     function logout(){
         localStorage.removeItem("token");
         navigate("/", { replace: false });
+        window.location.reload(false)
     }
     return (
         <>
@@ -89,7 +90,7 @@ const NavBar = ({ toggle }) => {
                              <NavLinks to='services'>Services</NavLinks>
                          </NavItem>
                          <NavItem>
-                             <NavLinks_tmp to='/Signin/SigninUser/Main/lyes'>Get Started </NavLinks_tmp>
+                             <NavLinks_tmp to='/Signin/SigninUser/Main/recherche'>Get Started </NavLinks_tmp>
                          </NavItem>
                          {admin && <NavItem>
                              <NavLinks_tmp to='/Signin/SigninUser/Admin'>Admin </NavLinks_tmp>

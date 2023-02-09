@@ -11,9 +11,10 @@ import re
 import json
 from extentions import db
 from model import annonce, users, Emails
+from apiflask import APIBlueprint
 
 
-annoncepage = Blueprint("annoncepage", __name__,
+annoncepage = APIBlueprint("annoncepage", __name__,
                         static_folder="instance", template_folder="BACKEND_NEW")
 
 cors = CORS(annoncepage, resources={r"/*": {"origins": "*"}})

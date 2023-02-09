@@ -60,6 +60,7 @@ const SideBar = ({isOpen,toggle}) => {
     function logout(){
         localStorage.removeItem("token");
         navigate("/", { replace: false });
+        window.location.reload(false)
     }
     return (
         <SideBarContainer isOpen={isOpen} onClick={toggle}>
@@ -71,7 +72,7 @@ const SideBar = ({isOpen,toggle}) => {
                     <SideBarLink onClick={toggle} to='about'>About</SideBarLink>
                     <SideBarLink onClick={toggle} to='discover'>Discover</SideBarLink>
                     <SideBarLink onClick={toggle} to='services'>Services</SideBarLink>
-                    <SideBarLink_tmp onClick={toggle} to='/Signin/SigninUser/Main/lyes' >Get Started</SideBarLink_tmp>
+                    <SideBarLink_tmp onClick={toggle} to='/Signin/SigninUser/Main/recherche' >Get Started</SideBarLink_tmp>
                     {admin && <SideBarLink_tmp onClick={toggle} to='/Signin/SigninUser/Admin' >Admin</SideBarLink_tmp>}
                 </SideBarMenu>
                 {!connexion &&<SideBtnWrap>

@@ -12,8 +12,9 @@ import json
 # from main import db
 from extentions import db
 from model import annonce,users,Emails
+from apiflask import APIBlueprint
 
-scrapingpage=Blueprint("scrapingpage",__name__,static_folder="instance",template_folder="BACKEND_NEW")
+scrapingpage=APIBlueprint("scrapingpage",__name__,static_folder="instance",template_folder="BACKEND_NEW")
 
 
 

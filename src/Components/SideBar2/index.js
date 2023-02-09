@@ -7,6 +7,7 @@ const SideBar = ({isOpen,toggle}) => {
         function logout(){
             localStorage.removeItem("token");
             navigate("/", { replace: false });
+            window.location.reload(false)
         }
     return (
         <SideBarContainer isOpen={isOpen} onClick={toggle}>

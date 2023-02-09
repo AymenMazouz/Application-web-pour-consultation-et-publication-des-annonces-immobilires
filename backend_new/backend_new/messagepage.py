@@ -7,8 +7,9 @@ from datetime import date
 from datetime import datetime
 from extentions import db
 from model import annonce,users,Emails
+from apiflask import APIBlueprint
 
-messagepage=Blueprint("messagepage",__name__,static_folder="instance",template_folder="BACKEND_NEW")
+messagepage=APIBlueprint("messagepage",__name__,static_folder="instance",template_folder="BACKEND_NEW")
 
 
 # messagepage.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///BaseDedonnee.db'
